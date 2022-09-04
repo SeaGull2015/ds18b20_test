@@ -93,9 +93,9 @@ void OWOneWrite(){
 	if (GPIO_Mode.Mode == GPIO_MODE_INPUT) {OWGPIOInit(true);}
 	delay_us(1); // recovery time
 	HAL_GPIO_WritePin(OneWire_BB_GPIO_Port, OneWire_BB_Pin, GPIO_PIN_RESET);
-	delay_us(30); // 1-15 us is OW 1 command
+	delay_us(1); // 1-15 us is OW 1 command
 	HAL_GPIO_WritePin(OneWire_BB_GPIO_Port, OneWire_BB_Pin, GPIO_PIN_SET);
-	delay_us(90); // up for some time until the next command
+	delay_us(119); // up for some time until the next command
 }
 
 void OWByteWrite(char input[8]){
@@ -114,7 +114,7 @@ bool OWReadBit(){
 	if (GPIO_Mode.Mode == GPIO_MODE_INPUT) {OWGPIOInit(true);}
 	bool record = HAL_GPIO_ReadPin(OneWire_BB_GPIO_Port, OneWire_BB_Pin);
 	if (record) delay_us(1);
-	delay_us(60);
+	delay_us(30);
 	record = HAL_GPIO_ReadPin(OneWire_BB_GPIO_Port, OneWire_BB_Pin);
 	delay_us(90);
 	return record;
